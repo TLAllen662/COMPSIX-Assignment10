@@ -67,6 +67,24 @@ app.get('/health', (req, res) => {
     });
 });
 
+// API info endpoint
+app.get('/api/info', (req, res) => {
+    res.json({
+        name: 'Task Management API',
+        version: '1.0.0',
+        environment: process.env.NODE_ENV,
+        timestamp: new Date().toISOString(),
+        endpoints: {
+            health: 'GET /health',
+            info: 'GET /api/info',
+            register: 'POST /api/register',
+            login: 'POST /api/login',
+            tasks: 'GET /api/tasks (requires auth)',
+            createTask: 'POST /api/tasks (requires auth)'
+        }
+    });
+});
+
 // Root endpoint
 app.get('/', (req, res) => {
     res.json({
